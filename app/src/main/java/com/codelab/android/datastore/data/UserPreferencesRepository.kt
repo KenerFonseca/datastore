@@ -36,14 +36,14 @@ private val Context.dataStore by preferencesDataStore(
         listOf(SharedPreferencesMigration(context, USER_PREFERENCES_NAME))
     }
 )
-
+//clase para la gesion de preferencias del usuario datastore
 class UserPreferencesRepository private constructor(private val context: Context) {
-
+//Se define la clave de prefencia
     private object PreferencesKeys {
         val SHOW_COMPLETED = booleanPreferencesKey("show_completed")
         val SORT_ORDER = stringPreferencesKey("sort_order")
     }
-
+// Se agrega el flujo de preferencia del usuario usando el datastore
     val userPreferencesFlow: Flow<UserPreferences> = context.dataStore.data
         .catch { exception ->
             if (exception is IOException) {
@@ -51,13 +51,13 @@ class UserPreferencesRepository private constructor(private val context: Context
             } else {
                 throw exception
             }
-        }
+        }// Se mapea la preferencia del modulo de datos
         .map { preferences ->
             val showCompleted = preferences[PreferencesKeys.SHOW_COMPLETED] ?: false
             val sortOrder = SortOrder.valueOf(preferences[PreferencesKeys.SORT_ORDER] ?: SortOrder.NONE.name)
             UserPreferences(showCompleted, sortOrder)
         }
-
+// Se actualiza las preferencias para habilitar las clasifiacaiones por fecha limite
     suspend fun enableSortByDeadline(enable: Boolean) {
         updateSortOrder(if (enable) SortOrder.BY_DEADLINE else SortOrder.BY_PRIORITY)
     }

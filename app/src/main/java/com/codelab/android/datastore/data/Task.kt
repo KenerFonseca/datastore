@@ -18,10 +18,10 @@ package com.codelab.android.datastore.data
 
 import java.util.Date
 
-enum class TaskPriority {
+enum class TaskPriority { //enumeracion de Prioridades
     HIGH, MEDIUM, LOW
 }
-data class Task(
+data class Task( //datos de las tareas
     val name: String,
     val deadline: Date,
     val priority: TaskPriority,

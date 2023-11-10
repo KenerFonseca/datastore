@@ -29,7 +29,7 @@ class TasksActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTasksBinding
     private val adapter = TasksAdapter()
-    private lateinit var userPreferencesRepository: UserPreferencesRepository // Asegúrate de tener esta declaración
+    private lateinit var userPreferencesRepository: UserPreferencesRepository
 
     private lateinit var viewModel: TasksViewModel
 

@@ -34,7 +34,7 @@ data class TasksUiModel(
     val sortOrder: SortOrder
 )
 
-class TasksViewModel(
+class TasksViewModel( //Manejador de tareas
     repository: TasksRepository,
     private val userPreferencesRepository: UserPreferencesRepository
 ) : ViewModel() {
